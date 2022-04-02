@@ -1,0 +1,92 @@
+<div class="container">
+  <h2>Employee Form</h2>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="form-group">
+      <!--BOX FOR FIRSTNAME-->
+      <label for="Firstname"><b>First Name : </b></label>
+      <input type="text" name="Firstname" id="firstname" class="form-control" placeholder="Enter First Name"
+        [(ngModel)]="UserSettings.firstName" /><br /><br />
+
+      <!--BOX FOR LASTNAME-->
+      <label for="Lastname"><b>Last Name : </b></label>
+      <input type="text" name="Lastname" id="lastname" class="form-control" placeholder="Enter Last Name"
+        [(ngModel)]="UserSettings.lastName" /><br /><br />
+
+      <!--BOX FOR EMAIL-->
+      <label for="email"><b>Email : </b></label>
+      <input type="email" name="Email" id="Email" class="form-control" placeholder="Enter Email-id"
+        [(ngModel)]="UserSettings.emailId" /><br /><br />
+
+      <!--BOX FOR CONTACT NUMBER-->
+      <label for="contact"><b>Contact Number : </b></label>
+      <input type="number" name="Contact" id="Contact" class="form-control" placeholder="Enter Phone Number"
+        [(ngModel)]="UserSettings.contactNumber" /><br /><br />
+
+      <!--BOX FOR ADDRESS-->
+      <label><b>Address : </b></label><br />
+      <textarea name="Address" id="address" cols="20" rows="3" class="form-control" placeholder="Enter Full Address"
+        [(ngModel)]="UserSettings.address"></textarea><br /><br />
+
+      <!--BOX FOR USERNAME-->
+      <label for="username"><b>Username : </b></label>
+      <input type="text" id="username" name="Username" class="form-control" placeholder="Enter UserName"
+        [(ngModel)]="UserSettings.userName" /><br /><br />
+
+      <!--BOX FOR PASSWORD-->
+      <label for="password"><b>Password : </b></label>
+      <input type="password" name="Password" id="password" class="form-control" placeholder="Enter Password"
+        [(ngModel)]="UserSettings.password" /><br /><br />
+    </div>
+
+    <!--RADIO BOX FOR GENDER-->
+    <div class="form-group">
+      <label for="gender"><b>Gender : </b></label><br />
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="Gender" id="maleId" value="Male"
+          [(ngModel)]="UserSettings.gender" />
+        <label class="form-check-label" for="Male">Male</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="Gender" id="femaleId" value="Female"
+          [(ngModel)]="UserSettings.gender" />
+        <label class="form-check-label" for="Female">Female</label>
+      </div>
+    </div><br />
+
+    <!--SELECTION TAG OF THE QUALIFICATION-->
+    <div class="form-group">
+      <label for="qualification"><b>Qualification : </b></label>
+      <select name="Qualification" id="qualification" class="form-check" [(ngModel)]="UserSettings.qualification">
+        <option *ngFor="let qualification of qualifications | async">
+          {{ qualification }}
+        </option>
+      </select>
+    </div><br />
+
+    <!--SELECTION TAG OF THE EXPERIENCE-->
+    <div class="form-group">
+      <label for="experience"><b>Experience : </b></label>
+      <select name="Experience" id="experience" [(ngModel)]="UserSettings.experience">
+        <option *ngFor="let experience of experiences | async">
+          {{ experience }}
+        </option>
+      </select>
+    </div><br />
+
+    <!--CHECKBOX FOR THE CODING LANGUAGES-->
+    <div class="form-group form-check">
+      <label for="languages"><b>Coding Languages : </b></label><br />
+      <div *ngFor="let n of Languages">
+        <input class="form-check-input" type="checkbox" [value]="n.id" [checked]="n.select"
+          (change)="onChangeLanguages($event)" />
+
+        <label> {{ n.name }}</label>
+      </div>
+    </div><br />
+
+    <!--SUBMIT BUTTON-->
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
